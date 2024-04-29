@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuPausa : MonoBehaviour
 {
+    // Estos campos deben estar asignados desde el Inspector
     [SerializeField] private GameObject botonPausa;  // El botón para abrir el menú de pausa
     [SerializeField] private GameObject botonMenu;  // El menú de pausa que contiene las opciones
 
@@ -12,10 +13,21 @@ public class MenuPausa : MonoBehaviour
     // Inicializa el estado del menú y el botón de pausa
     private void Start()
     {
+        // Si el campo es null, intenta encontrar el objeto
+        if (botonPausa == null)
+        {
+            botonPausa = GameObject.Find("NombreDelBotonDePausa");  // Reemplaza con el nombre real
+        }
+
+        if (botonMenu == null)
+        {
+            botonMenu = GameObject.Find("NombreDelMenuDePausa");  // Reemplaza con el nombre real
+        }
+
         botonMenu.SetActive(false);  // Asegúrate de que el menú esté oculto al inicio
         botonPausa.SetActive(true);  // El botón de pausa debe estar activo al inicio
     }
-
+    
     // Método para alternar el estado de pausa
     private void TogglePausa()
     {
