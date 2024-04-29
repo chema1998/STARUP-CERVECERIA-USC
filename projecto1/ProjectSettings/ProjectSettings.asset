@@ -46,7 +46,7 @@ PlayerSettings:
   defaultScreenHeight: 1080
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
-  m_StereoRenderingPath: 0
+  m_StereoRenderingPath: 2
   m_ActiveColorSpace: 1
   unsupportedMSAAFallback: 0
   m_SpriteBatchVertexThreshold: 300
@@ -168,9 +168,9 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 22
+  AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 0
-  AndroidPreferredInstallLocation: 1
+  AndroidPreferredInstallLocation: 0
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
@@ -410,7 +410,7 @@ PlayerSettings:
   - m_BuildTarget: iOSSupport
     m_GraphicsJobs: 0
   - m_BuildTarget: WindowsStandaloneSupport
-    m_GraphicsJobs: 1
+    m_GraphicsJobs: 0
   - m_BuildTarget: XboxOnePlayer
     m_GraphicsJobs: 1
   - m_BuildTarget: LuminSupport
@@ -437,6 +437,9 @@ PlayerSettings:
   - m_BuildTarget: WebGLSupport
     m_APIs: 0b000000
     m_Automatic: 1
+  - m_BuildTarget: WindowsStandaloneSupport
+    m_APIs: 02000000
+    m_Automatic: 0
   m_BuildTargetVRSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 0
@@ -736,7 +739,24 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    EmbeddedLinux: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    GameCoreScarlett: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    GameCoreXboxOne: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    LinuxHeadlessSimulation: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    Nintendo Switch: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    PS4: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    PS5: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    QNX: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    Stadia: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    Standalone: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    VisionOS: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    WebGL: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    Windows Store Apps: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    XboxOne: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    iPhone: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
+    tvOS: ULTIMATEXR_USE_WINDOWSMIXEDREALITY_SDK;ULTIMATEXR_USE_OCULUS_SDK
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
