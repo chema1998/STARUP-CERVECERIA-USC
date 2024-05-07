@@ -6,6 +6,8 @@ TagManager:
   tags:
   - obj interactivo prueva
   - objInteractivo
+  - Door
+  - TrigerDoor
   layers:
   - Default
   - TransparentFX

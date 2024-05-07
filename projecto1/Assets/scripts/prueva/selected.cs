@@ -1,31 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-
-    public LayerMask mask; 
-    public float distancia = 10f; 
+    public LayerMask mask;
+    public float distancia = 10f;
 
     public Texture2D puntero;
     public GameObject TextDetect;
-    GameObject ultimoReconocido = null;
+    private GameObject ultimoReconocido = null;
 
     void Start()
     {
-
-
-    
-     if (mask.value == 0) // Verifica si la máscara no está configurada
+        if (mask == 0)
         {
-            mask = LayerMask.GetMask("RycaseDetect"); 
-            TextDetect.SetActive(false);// Asegúrate de que la capa existe
+            mask = LayerMask.GetMask("RycaseDetect"); // Asegúrate de que la capa existe
         }
-       
-
-  
+        TextDetect.SetActive(false);
     }
 
     void Update()
@@ -36,61 +28,51 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distancia, Color.red);
             Deselect();
-            SelectedObject(hit.transform);
-            if (hit.collider.CompareTag("objInteractivo")) 
-            {
-                Debug.Log($"Raycast golpeó: {hit.collider.name} con el tag 'objInteractivo'");
+            SelectObject(hit.transform);
 
+            if (hit.collider.CompareTag("Door"))
+            {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("Tecla 'E' presionada. Se puede activar o interactuar con el objeto.");
-
-                    hit.collider.transform.GetComponent<ObjInteractivo>().ActivarObjeto();
-                    
+                    hit.collider.GetComponent<SystemDoor>().ChangeDoorState();
                 }
-            }
-            else
-            {
-                Deselect();
-                Debug.Log($"Raycast golpeó un objeto con un tag diferente: {hit.collider.tag}");
             }
         }
         else
         {
             Deselect();
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distancia, Color.blue); 
-            Debug.Log("Raycast no golpeó nada");
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distancia, Color.blue);
         }
     }
-    void SelectedObject(Transform transform)
+
+    private void SelectObject(Transform transform)
     {
-        transform.GetComponent<MeshRenderer>().material.color=Color.green;
+        var renderer = transform.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material.color = Color.green;
+        }
         ultimoReconocido = transform.gameObject;
     }
 
-    void Deselect()
+    private void Deselect()
     {
-        if (ultimoReconocido)
+        if (ultimoReconocido != null)
         {
-            ultimoReconocido.GetComponent<Renderer>().material.color = Color.white;
+            var renderer = ultimoReconocido.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.material.color = Color.white;
+            }
             ultimoReconocido = null;
         }
     }
 
-
     void OnGUI()
     {
-        Rect rect = new Rect(Screen.width/2, Screen.height/2,puntero.width, puntero.height);
+        Rect rect = new Rect(Screen.width / 2 - puntero.width / 2, Screen.height / 2 - puntero.height / 2, puntero.width, puntero.height);
         GUI.DrawTexture(rect, puntero);
 
-        if(ultimoReconocido)
-        {
-            TextDetect.SetActive(true);
-        }
-        else
-        {
-            TextDetect.SetActive(false);
-        }
+        TextDetect.SetActive(ultimoReconocido != null);
     }
-
 }
