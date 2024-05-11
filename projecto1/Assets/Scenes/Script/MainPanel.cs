@@ -10,10 +10,11 @@ public class MainPanel : MonoBehaviour
   public Slider volumeFX;
   public Slider volumeMaster;
   public Toggle mute;
-  public AudioMixer mixer;
-  public AudioSource fxSource;
-  public AudioClip clickSound;
-  private float lastvolume;
+ public AudioMixer mixer;
+    public AudioSource fxSource;
+    public AudioClip clickSound;
+    private float lastVolume;
+
 
   [Header("Panels")]
   public GameObject mainPanel;
@@ -21,21 +22,28 @@ public class MainPanel : MonoBehaviour
   public GameObject playPanel;
 
   private void Awake()
-  {
-    volumeFX.onValueChanged.AddListener(ChangevolumeFX);
-    volumeMaster.onValueChanged.AddListener(ChangeVolumeMaster);
-  }
+    {
+        volumeFX.onValueChanged.AddListener(ChangeVolumeFX);
+        volumeMaster.onValueChanged.AddListener(ChangeVolumeMaster);
+    }
+
+
+  public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 
   public void SetMute()
-  {
-    if (mute.isOn)
     {
-    mixer.GetFloat("volMaster",out lastvolume);
-    mixer.SetFloat("volMaster", -80);
+        if (mute.isOn)
+        {
+            mixer.GetFloat("VolMaster", out lastVolume);
+            mixer.SetFloat("VolMaster", -80);
+        }
+       else
+            mixer.SetFloat("VolMaster", lastVolume);
     }
-    else
-    mixer.SetFloat("volMaster", lastvolume);
-  }
 
   public void OpenPanel(GameObject panel)
   {
@@ -44,20 +52,21 @@ public class MainPanel : MonoBehaviour
     playPanel.SetActive(false);
 
     panel.SetActive(true);
-    PlaySoundButton();
+        PlaySoundButton();
   }
 
   public void ChangeVolumeMaster(float v)
-  {
-    mixer.SetFloat("volMaster", v);
-  }
-  public void ChangevolumeFX(float v)
-  {
-    mixer.SetFloat("volFX", v);
-  }
-  public void PlaySoundButton()
-  {
-    fxSource.PlayOneShot(clickSound);
-  }
+    {
+        mixer.SetFloat("VolMaster", v);
+    }
+    public void ChangeVolumeFX(float v)
+    {
+        mixer.SetFloat("VolFX", v);
+    }
+    public void PlaySoundButton()
+    {
+        fxSource.PlayOneShot(clickSound);
+    }
+
   
 }
