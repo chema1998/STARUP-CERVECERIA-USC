@@ -4971,38 +4971,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819880651}
   m_Mesh: {fileID: 13613623464001037, guid: cf6bdd2e89e837d4b893b4187430ef76, type: 3}
---- !u!1 &820724409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 820724410}
-  m_Layer: 0
-  m_Name: tanques comprados
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &820724410
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820724409}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1644.8, y: 123.15625, z: 319.66916}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 937511602}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &821062240 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a4026d825f8bfa544bd0e4c2da15ec7f, type: 3}
@@ -5726,68 +5694,6 @@ MonoBehaviour:
   smooth: 3
   openDoor: {fileID: 0}
   closeDoor: {fileID: 0}
---- !u!1001 &937511601
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 820724410}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-      propertyPath: m_Name
-      value: tanques comprados
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
---- !u!4 &937511602 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 673da35b178f0a946bbe7a6c0b3ae086, type: 3}
-  m_PrefabInstance: {fileID: 937511601}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &944466370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7696356283198868876, guid: f1665ef4116c3a04981674c8a53d6cb8, type: 3}
@@ -14069,4 +13975,3 @@ SceneRoots:
   - {fileID: 2009116869}
   - {fileID: 808142200}
   - {fileID: 237441065}
-  - {fileID: 820724410}
