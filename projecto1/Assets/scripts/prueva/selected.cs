@@ -6,7 +6,6 @@ public class NewBehaviourScript : MonoBehaviour
 {
     public LayerMask mask;
     public float distancia = 10f;
-
     public Texture2D puntero;
     public GameObject TextDetect;
     private GameObject ultimoReconocido = null;
@@ -17,7 +16,15 @@ public class NewBehaviourScript : MonoBehaviour
         {
             mask = LayerMask.GetMask("RycaseDetect"); // Asegúrate de que la capa existe
         }
-        TextDetect.SetActive(false);
+
+        if (TextDetect != null)
+        {
+            TextDetect.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("TextDetect is not assigned in the Inspector.");
+        }
     }
 
     void Update()
@@ -45,7 +52,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-    private void SelectObject(Transform transform)
+    public void SelectObject(Transform transform)
     {
         var renderer = transform.GetComponent<Renderer>();
         if (renderer != null)
@@ -55,7 +62,7 @@ public class NewBehaviourScript : MonoBehaviour
         ultimoReconocido = transform.gameObject;
     }
 
-    private void Deselect()
+    public void Deselect()
     {
         if (ultimoReconocido != null)
         {
@@ -70,9 +77,19 @@ public class NewBehaviourScript : MonoBehaviour
 
     void OnGUI()
     {
-        Rect rect = new Rect(Screen.width / 2 - puntero.width / 2, Screen.height / 2 - puntero.height / 2, puntero.width, puntero.height);
-        GUI.DrawTexture(rect, puntero);
+        if (puntero != null)
+        {
+            Rect rect = new Rect(Screen.width / 2 - puntero.width / 2, Screen.height / 2 - puntero.height / 2, puntero.width, puntero.height);
+            GUI.DrawTexture(rect, puntero);
+        }
+        else
+        {
+            Debug.LogWarning("puntero texture is not assigned.");
+        }
 
-        TextDetect.SetActive(ultimoReconocido != null);
+        if (ultimoReconocido != null && TextDetect != null)
+        {
+            TextDetect.SetActive(true);
+        }
     }
 }
