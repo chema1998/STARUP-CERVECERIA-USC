@@ -8,7 +8,4 @@ public class ObjInteractivo : MonoBehaviour
     {
        Destroy(gameObject);
     }
-
-
-    
 }
