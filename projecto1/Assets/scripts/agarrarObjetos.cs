@@ -4,38 +4,29 @@ using UnityEngine;
 
 public class agarrarObjetos : MonoBehaviour
 {
+
     public GameObject cubo;
     public Transform mano;
     public Transform posicion;
 
-    public bool activo;
+    private bool activo;
 
     void Update()
     {
-        if (activo)
+        if (activo == true)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                AgarrarCubo();
+                cubo.transform.SetParent(mano);
+                cubo.transform.position = mano.position;
+                cubo.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            SoltarCubo();
+            cubo.transform.SetParent(null);
+            cubo.GetComponent <Rigidbody>().isKinematic = false; 
         }        
-    }
-
-    public void AgarrarCubo()
-    {
-        cubo.transform.SetParent(mano);
-        cubo.transform.position = mano.position;
-        cubo.GetComponent<Rigidbody>().isKinematic = true;
-    }
-
-    public void SoltarCubo()
-    {
-        cubo.transform.SetParent(null);
-        cubo.GetComponent<Rigidbody>().isKinematic = false; 
     }
 
     private void OnTriggerEnter(Collider other)
