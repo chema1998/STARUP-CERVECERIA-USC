@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SystemDoor : MonoBehaviour
@@ -12,11 +11,6 @@ public class SystemDoor : MonoBehaviour
     public AudioClip openDoor;
     public AudioClip closeDoor;
 
-    public void ChangeDoorState()
-    {
-        doorOpen = !doorOpen;
-    }
-
     void Update()
     {
         Quaternion targetRotation = doorOpen ? Quaternion.Euler(0, doorOpenAngle, 0) : Quaternion.Euler(0, doorCloseAngle, 0);
@@ -24,19 +18,49 @@ public class SystemDoor : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
     }
 
+    public void ChangeDoorState()
+    {
+        doorOpen = !doorOpen;
+
+        if (doorOpen)
+        {
+            PlayOpenDoorSound();
+        }
+        else
+        {
+            PlayCloseDoorSound();
+        }
+    }
+
+    private void PlayOpenDoorSound()
+    {
+        if (openDoor != null)
+        {
+            AudioSource.PlayClipAtPoint(openDoor, transform.position, 1f);
+        }
+        else
+        {
+            Debug.LogWarning("Open door sound clip is not assigned.");
+        }
+    }
+
+    private void PlayCloseDoorSound()
+    {
+        if (closeDoor != null)
+        {
+            AudioSource.PlayClipAtPoint(closeDoor, transform.position, 1f);
+        }
+        else
+        {
+            Debug.LogWarning("Close door sound clip is not assigned.");
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("TriggerDoor"))
         {
-            AudioSource.PlayClipAtPoint(closeDoor, transform.position, 1f);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("TriggerDoor"))
-        {
-            AudioSource.PlayClipAtPoint(openDoor, transform.position, 1f);
+            ChangeDoorState();
         }
     }
 }
