@@ -2,26 +2,19 @@ using UnityEngine;
 
 public class ProgressSaver : MonoBehaviour
 {
-    private string profileName;
+    public ProgressManager progressManager; // Asigna el ProgressManager en el Inspector
 
-    private void OnEnable()
+    void OnDisable()
     {
-        profileName = ProfileManager.currentProfileName; // Asignar el profileName actual desde ProfileManager
+        // Este método se llama cuando el GameObject se desactiva
+        // En este caso, se llamará cuando el jugador salga de la escena
+
+        // Llama al método de guardado del progreso
+        progressManager.SavePlayerProgress("NombrePerfil");
+    }
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
-    private void OnDisable()
-    {
-        ProfileManager profileManager = FindObjectOfType<ProfileManager>();
-        ProgressManager progressManager = FindObjectOfType<ProgressManager>();
-
-        if (profileManager != null && progressManager != null && !string.IsNullOrEmpty(profileName))
-        {
-            progressManager.SavePlayerProgress(profileName);
-        }
-        else
-        {
-            Debug.LogError("No se pudo encontrar ProfileManager o ProgressManager.");
-        }
-    }
 }
-
