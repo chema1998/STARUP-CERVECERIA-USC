@@ -1,72 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class MainPanel : MonoBehaviour
 {
-  [Header("Options")]
-  public Slider volumeFX;
-  public Slider volumeMaster;
-  public Toggle mute;
- public AudioMixer mixer;
+    [Header("Options")]
+    public Slider volumeFX;
+    public Slider volumeMaster;
+    public Toggle mute;
+    public AudioMixer mixer;
     public AudioSource fxSource;
     public AudioClip clickSound;
-    private float lastVolume;
+    
+    private float lastVolumeMaster;
+    private float lastVolumeFX;
+    private bool isMuted = false;
 
+    [Header("Panels")]
+    public GameObject mainPanel;
+    public GameObject Options;
+    public GameObject playPanel;
 
-  [Header("Panels")]
-  public GameObject mainPanel;
-  public GameObject Options;
-  public GameObject playPanel;
-
-  private void Awake()
+    private void Awake()
     {
         volumeFX.onValueChanged.AddListener(ChangeVolumeFX);
         volumeMaster.onValueChanged.AddListener(ChangeVolumeMaster);
+        mute.onValueChanged.AddListener(SetMute);
     }
 
-
-  public void ExitGame()
+    public void ExitGame()
     {
         Application.Quit();
     }
 
-
-  public void SetMute()
+    public void SetMute(bool isOn)
     {
-        if (mute.isOn)
-        {
-            mixer.GetFloat("VolMaster", out lastVolume);
-            mixer.SetFloat("VolMaster", -80);
-        }
-       else
-            mixer.SetFloat("VolMaster", lastVolume);
+        isMuted = isOn;
+        float masterVolume = isMuted ? -80f : lastVolumeMaster;
+        float fxVolume = isMuted ? -80f : lastVolumeFX;
+        
+        mixer.SetFloat("VolMaster", masterVolume);
+        mixer.SetFloat("VolFX", fxVolume);
     }
 
-  public void OpenPanel(GameObject panel)
-  {
-    mainPanel.SetActive(false);
-    Options.SetActive(false);
-    playPanel.SetActive(false);
+    public void OpenPanel(GameObject panel)
+    {
+        mainPanel.SetActive(false);
+        Options.SetActive(false);
+        playPanel.SetActive(false);
 
-    panel.SetActive(true);
+        panel.SetActive(true);
         PlaySoundButton();
-  }
-
-  public void ChangeVolumeMaster(float v)
-    {
-        mixer.SetFloat("VolMaster", v);
     }
+
+    public void ChangeVolumeMaster(float v)
+    {
+        if (!isMuted)
+        {
+            mixer.SetFloat("VolMaster", v);
+            lastVolumeMaster = v;
+        }
+    }
+
     public void ChangeVolumeFX(float v)
     {
-        mixer.SetFloat("VolFX", v);
-    }
-    public void PlaySoundButton()
-    {
-        fxSource.PlayOneShot(clickSound);
+        if (!isMuted)
+        {
+            mixer.SetFloat("VolFX", v);
+            lastVolumeFX = v;
+        }
     }
 
-  
+    public void PlaySoundButton()
+    {
+        if (!isMuted && fxSource != null && clickSound != null)
+        {
+            fxSource.PlayOneShot(clickSound);
+        }
+    }
 }
