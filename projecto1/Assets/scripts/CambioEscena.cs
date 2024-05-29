@@ -17,4 +17,34 @@ public class CambioEscena : MonoBehaviour
             Debug.LogWarning("El nombre de la escena no puede ser nulo o vacío.");
         }
     }
+
+
+    public void CambioEscenaIngrNom(string IngresarNombre)
+    {
+        // Verificar si el nombre de la escena no está vacío o nulo
+        if (!string.IsNullOrEmpty(IngresarNombre))
+        {
+            // Cargar la escena con el nombre proporcionado
+            SceneManager.LoadScene(IngresarNombre);
+        }
+        else
+        {
+            Debug.LogWarning("El nombre de la escena no puede ser nulo o vacío.");
+        }
+    }
+
+    public void CambioEscenaMenu(string Menu)
+    {
+        // Verificar si el nombre de la escena no está vacío o nulo
+        if (!string.IsNullOrEmpty(Menu))
+        {
+            // Cargar la escena con el nombre proporcionado
+            SceneManager.LoadScene(Menu);
+        }
+        else
+        {
+            Debug.LogWarning("El nombre de la escena no puede ser nulo o vacío.");
+        }
+    }
+
 }
