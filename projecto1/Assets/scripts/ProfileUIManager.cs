@@ -7,6 +7,7 @@ public class ProfileUIManager : MonoBehaviour
     public Dropdown profileDropdown;
     public InputField profileNameInput;
     public Text messageText;
+    
 
     private void Start()
     {
