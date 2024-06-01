@@ -10,6 +10,9 @@ public class MenuPausa : MonoBehaviour
     // Variable para controlar si el juego está pausado
     private bool juegopausado = false;
 
+    // Variable estática para controlar si el menú de recetas está activo
+    public static bool menuRecetasActivo = false;
+
     // Inicializa el estado del menú y el botón de pausa
     private void Start()
     {
@@ -31,6 +34,12 @@ public class MenuPausa : MonoBehaviour
     // Método para alternar el estado de pausa
     private void TogglePausa()
     {
+        // Verificar si el menú de recetas está activo
+        if (menuRecetasActivo)
+        {
+            return;
+        }
+
         if (juegopausado)
         {
             Reanudar();
@@ -57,11 +66,11 @@ public class MenuPausa : MonoBehaviour
         Time.timeScale = 0f;  // Pausa el tiempo del juego
         botonPausa.SetActive(false);  // Desactiva el botón de pausa
         botonMenu.SetActive(true);  // Activa el menú de pausa para mostrar las opciones
-        Cursor.lockState = CursorLockMode.None; //Bloquea el cursor en el centro de la pantalla.
+        Cursor.lockState = CursorLockMode.None; // Desbloquea el cursor.
         Cursor.visible = true; // Puntero visible
 
-        // Llamar al método estático de ActivarRecetas para indicar que el menú de pausa está activo
-        ActivarRecetas.SetMenuPausaActivo(true);
+        // Informar al otro script que el menú de pausa está activo
+        ActivarRecetas.menuPausaActivo = true;
     }
 
     // Método para reanudar el juego y ocultar el menú
@@ -71,11 +80,11 @@ public class MenuPausa : MonoBehaviour
         Time.timeScale = 1f;  // Reanuda el tiempo del juego
         botonPausa.SetActive(true);  // Activa el botón de pausa nuevamente
         botonMenu.SetActive(false);  // Oculta el menú de pausa
-        Cursor.lockState = CursorLockMode.None; //Bloquea el cursor en el centro de la pantalla.
+        Cursor.lockState = CursorLockMode.None; // Desbloquea el cursor.
         Cursor.visible = false; // Ocultar puntero
 
-        // Llamar al método estático de ActivarRecetas para indicar que el menú de pausa ya no está activo
-        ActivarRecetas.SetMenuPausaActivo(false);
+        // Informar al otro script que el menú de pausa no está activo
+        ActivarRecetas.menuPausaActivo = false;
     }
 
     // Método para reiniciar la escena actual

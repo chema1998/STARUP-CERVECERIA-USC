@@ -8,7 +8,7 @@ public class ActivarRecetas : MonoBehaviour
     public GameObject myPanel;
 
     // Variable estática para controlar si el menú de pausa está activo
-    private static bool menuPausaActivo = false;
+    public static bool menuPausaActivo = false;
 
     private bool isPanelActive; // Variable para mantener el estado del panel
 
@@ -17,13 +17,16 @@ public class ActivarRecetas : MonoBehaviour
         // Sincronizar el estado del panel con la variable isPanelActive
         isPanelActive = myPanel.activeSelf;
 
+        // El botón está activo al inicio
+        myButton.gameObject.SetActive(true);
+
         // Añadir el listener al botón para que llame al método TogglePanelButton cuando se haga clic
         myButton.onClick.AddListener(TogglePanelButton);
     }
 
     void Update()
     {
-        // Verificar si se presiona la tecla M
+        // Verificar si se presiona la tecla R
         if (Input.GetKeyDown(KeyCode.R))
         {
             // Solo alternar si el menú de pausa no está activo
@@ -40,25 +43,46 @@ public class ActivarRecetas : MonoBehaviour
         // Solo alternar si el menú de pausa no está activo
         if (!menuPausaActivo)
         {
-            // Invertir el estado del panel
-            isPanelActive = !isPanelActive;
-            // Aplicar el estado al panel
-            myPanel.SetActive(isPanelActive);
+            TogglePanel();
         }
     }
 
-    // Método para alternar el estado del panel con la tecla M
+    // Método para alternar el estado del panel
     void TogglePanel()
     {
+        // Verificar si el menú de pausa está activo
+        if (menuPausaActivo)
+        {
+            return;
+        }
+
         // Invertir el estado del panel
         isPanelActive = !isPanelActive;
         // Aplicar el estado al panel
         myPanel.SetActive(isPanelActive);
+
+        // Activar o desactivar el puntero del mouse
+        if (isPanelActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        // Desactivar el botón cuando el panel está activo
+        myButton.gameObject.SetActive(!isPanelActive);
+
+        // Informar al otro script sobre el estado del panel
+        MenuPausa.menuRecetasActivo = isPanelActive;
     }
 
-    // Método estático para activar o desactivar el menú de pausa desde el otro script
-    public static void SetMenuPausaActivo(bool activo)
+    // Método para verificar si el panel está activo
+    public bool IsPanelActive()
     {
-        menuPausaActivo = activo;
+        return isPanelActive;
     }
 }
