@@ -42,13 +42,13 @@ public class MenuPausa : MonoBehaviour
     }
 
     // Método para manejar la tecla Escape
-     private void Update()
-     {
-         if (Input.GetKeyDown(KeyCode.Escape))
-         {
-             TogglePausa();  // Alternar entre pausa y reanudación
-         }
-     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePausa();  // Alternar entre pausa y reanudación
+        }
+    }
 
     // Método para pausar el juego y mostrar el menú
     public void Pausa()
@@ -59,6 +59,9 @@ public class MenuPausa : MonoBehaviour
         botonMenu.SetActive(true);  // Activa el menú de pausa para mostrar las opciones
         Cursor.lockState = CursorLockMode.None; //Bloquea el cursor en el centro de la pantalla.
         Cursor.visible = true; // Puntero visible
+
+        // Llamar al método estático de ActivarRecetas para indicar que el menú de pausa está activo
+        ActivarRecetas.SetMenuPausaActivo(true);
     }
 
     // Método para reanudar el juego y ocultar el menú
@@ -70,6 +73,9 @@ public class MenuPausa : MonoBehaviour
         botonMenu.SetActive(false);  // Oculta el menú de pausa
         Cursor.lockState = CursorLockMode.None; //Bloquea el cursor en el centro de la pantalla.
         Cursor.visible = false; // Ocultar puntero
+
+        // Llamar al método estático de ActivarRecetas para indicar que el menú de pausa ya no está activo
+        ActivarRecetas.SetMenuPausaActivo(false);
     }
 
     // Método para reiniciar la escena actual
