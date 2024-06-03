@@ -9,8 +9,10 @@ public class CreadorDeCerveza : MonoBehaviour
     public Dropdown levaduraDropdown;
     public Dropdown saborDropdown;
     public Dropdown nombreCervezaDropdown;
+    public Image cervezaImagen;
 
     private Dictionary<string, string> combinacionesDeCerveza;
+    private Dictionary<string, Sprite> imagenesDeCerveza;
 
     private void Start()
     {
@@ -23,13 +25,18 @@ public class CreadorDeCerveza : MonoBehaviour
             { "PaleAleSimcoeKölschCaramelo", "Sauer" },
             { "CrystalAleSimcoeKölschCaramelo", "Tramadora" },
             { "CrystalAmarilloWeissbierTostado", "BienHechor" },
+        };
 
-            // 1. "Pilsner - Cascade - Ale - Cítrico", "Prendida" },
-            // 2. "Vienna - Centennial - Lager - Herbal", "Carmesi" },
-            // 3. "MunichCitra - Brettanomyces - Frutal", "Lecter" },
-            // 4. "PaleAle - Simcoe - Kölsch - Caramelo", "Sauer" },
-            // 5. "Crystal - AleSimcoe - Kölsch - Caramelo", "Tramadora" },
-            // 6. "Crystal - Amarillo - Weissbier - Tostado", "BienHechor" },
+        // Inicializar las imágenes de cerveza
+        imagenesDeCerveza = new Dictionary<string, Sprite>
+        {
+            { "Prendida", Resources.Load<Sprite>("Imagenes/LataAzulUSCFF") },
+            { "Carmesi", Resources.Load<Sprite>("Imagenes/LataRojaUSCFF") },
+            { "Lecter", Resources.Load<Sprite>("Imagenes/LataAmarillaUSCFF") },
+            { "Sauer", Resources.Load<Sprite>("Imagenes/LataVerdeUSCFF") },
+            { "Tramadora", Resources.Load<Sprite>("Imagenes/LataNegraUSCFF") },
+            { "BienHechor", Resources.Load<Sprite>("Imagenes/LataGrisUSCFF") },
+            { "Cerveza Desconocida", Resources.Load<Sprite>("Imagenes/CervezaDesconocida") },
         };
 
         // Añadir listeners a los dropdowns
@@ -60,13 +67,19 @@ public class CreadorDeCerveza : MonoBehaviour
             // Actualizar el Dropdown de nombre de la cerveza
             nombreCervezaDropdown.ClearOptions();
             nombreCervezaDropdown.AddOptions(new List<string> { nombreCerveza });
+
+            // Actualizar la imagen de la cerveza
+            if (imagenesDeCerveza.TryGetValue(nombreCerveza, out Sprite cervezaSprite))
+            {
+                cervezaImagen.sprite = cervezaSprite;
+            }
         }
         else
         {
-            // Si no se encuentra la combinación, mostrar una opción por defecto
+            // Si no se encuentra la combinación, mostrar una opción y una imagen por defecto
             nombreCervezaDropdown.ClearOptions();
             nombreCervezaDropdown.AddOptions(new List<string> { "Cerveza Desconocida" });
+            cervezaImagen.sprite = imagenesDeCerveza["Cerveza Desconocida"];
         }
     }
 }
-
