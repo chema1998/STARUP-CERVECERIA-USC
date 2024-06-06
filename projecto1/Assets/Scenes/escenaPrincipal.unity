@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11436,6 +11436,63 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.9501505, y: 7, z: 108.7003}
   m_Center: {x: 0, y: 3.5413914, z: 225.21124}
+--- !u!1001 &486553807
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1638.6624
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 126.07714
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 436.4118
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
+      propertyPath: m_Name
+      value: tanques
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0c5660440c62b9e4bb2a9e24a4a8a4d2, type: 3}
 --- !u!1 &487151945 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6321878825633190176, guid: 2bbce9ed02d48064d8e0ae41ae6a6848, type: 3}
@@ -55424,3 +55481,4 @@ SceneRoots:
   - {fileID: 1244726966}
   - {fileID: 362629355}
   - {fileID: 1877087628}
+  - {fileID: 486553807}
